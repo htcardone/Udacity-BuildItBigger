@@ -19,17 +19,29 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        free {
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+        }
+        paid {
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+        }
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.google.android.gms:play-services-ads:11.6.0'
+    freeCompile 'com.google.android.gms:play-services-ads:11.6.0'
 
     compile project(':jokeActivity')
     compile project(path: ':backend', configuration: 'android-endpoints')
